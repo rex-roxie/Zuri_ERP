@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (event) => {
@@ -21,6 +22,18 @@ function Login() {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(`Error code: ${errorCode} \n Error Message: ${errorMessage}`);
+
+      switch(errorMessage) {
+        case 'Firebase: Error (auth/invalid-email).':
+          setError('Invalid email');
+          break;
+        case 'Firebase: Error (auth/wrong-password).':
+          setError('Invalid password');
+          break;
+        default:
+          setError('Oops, you seemed to have entered something wrong. Please try again.');
+          break;
+      }
       navigate('/');
     });
   }
@@ -31,6 +44,7 @@ function Login() {
         <input type="email" placeholder='Email' onChange={(event) => {setEmail(event.target.value)}}/>
         <input type="password" placeholder='Password' onChange={(event) => {setPassword(event.target.value)}} />
         <button type="submit" onClick={handleLogin}>Login</button>
+        <p>{error}</p>
       </form>
     </div>
   )
