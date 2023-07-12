@@ -31,7 +31,7 @@ function Login() {
           setError('Invalid password');
           break;
         default:
-          setError('Oops, you seemed to have entered something wrong. Please try again.');
+          setError('Oops, there seems to be an error. Please try again.');
           break;
       }
       navigate('/');
