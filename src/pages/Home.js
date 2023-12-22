@@ -11,10 +11,25 @@ const Home = () => {
     navigate('/');
   }
 
+  const name = () => {
+    navigate('/changeName');
+  }
+
+  const email = () => {
+    navigate('/changeEmail');
+  }
+  const password = () => {
+    navigate('/changePassword');
+  }
+
   return (
     <div>
+        <h1>Welcome Home {auth.currentUser.displayName}</h1>
         <h1>Welcome Home {auth.currentUser.email}</h1>
         <button onClick={logout}>Logout</button>
+        <button onClick={name}>Change Name</button>
+        <button onClick={password}>Change Password</button>
+        <button onClick={email}>Change Email</button>
     </div>
   )
 }
