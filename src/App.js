@@ -7,6 +7,8 @@ import ProtectedRoute from './components/ProtectedRoute';
 import UpdateFirstName from './components/UpdateFirstName';
 import UpdateEmail from './components/UpdateEmail';
 import UpdatePassword from './components/UpdatePassword';
+import AddDriver from './pages/AddDriver';
+import DeleteDriver from './pages/DeleteDriver';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route path={"/changeName"} element={<ProtectedRoute><UpdateFirstName /></ProtectedRoute>} />
           <Route path={"/changeEmail"} element={<ProtectedRoute><UpdateEmail /></ProtectedRoute>} />
           <Route path={"/changePassword"} element={<ProtectedRoute><UpdatePassword /></ProtectedRoute>} />
+          <Route path={"/addDriver"} element={<ProtectedRoute><AddDriver /></ProtectedRoute>} />
+          <Route path={"/deleteDriver"} element={<ProtectedRoute><DeleteDriver /></ProtectedRoute>} />
         </Routes>
         <AuthProvider />
       </div>
