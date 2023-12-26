@@ -20,6 +20,8 @@ function AddDriver() {
         medicalCardExpiryDate: Date.now().timestamp,
     });
 
+    const colRef = collection(db, 'drivers');
+
     const onChange = (event) => {
         setValues({
             ...values,
@@ -29,13 +31,21 @@ function AddDriver() {
 
     const submitNewDriver = (event) => {
         event.preventDefault();
+        
+        const q = query(colRef, where("email", '==', values.email));
 
         const addDriver = async () => {
             await addDoc(collection(db, "drivers"), {first_name: values.firstName, last_name: values.lastName, email: values.email, phone: values.phone, medical_card_number: values.medicalCardNumber, truck_number: values.truckNumber, driver_license_number: values.driverLicenseNumber, certification: values.certification, citizenship: values.citizenship, driver_license_expiry_date: values.driverLicenseExpiryDate, medical_card_expiry_date: values.medicalCardExpiryDate}); 
         }
-
-        addDriver();
-        navigate('/home');
+        
+        onSnapshot(q, (snapshot) => {
+            if (snapshot.docs.length === 0){
+                addDriver();
+                navigate('/home');
+            } else {
+                console.log("That email already exists.");
+            }
+        })
         
     }
 
