@@ -21,6 +21,7 @@ function App() {
           <Route path={"/changePassword"} element={<ProtectedRoute><UpdatePassword /></ProtectedRoute>} />
           <Route path={"/addDriver"} element={<ProtectedRoute><AddDriver /></ProtectedRoute>} />
           <Route path={"/deleteDriver"} element={<ProtectedRoute><DeleteDriver /></ProtectedRoute>} />
+          {/* <Route path={`/drivers/${driver.first_name}`} element={<ProtectedRoute><DeleteDriver /></ProtectedRoute>} /> */}
         </Routes>
         <AuthProvider />
       </div>

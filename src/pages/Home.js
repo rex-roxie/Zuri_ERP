@@ -3,6 +3,7 @@ import { auth, db } from '../firebase';
 import { signOut } from 'firebase/auth';
 import { collection, getDocs } from "firebase/firestore";
 import { useNavigate } from 'react-router-dom';
+import DriverInfo from './DriverInfo';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -38,6 +39,9 @@ const Home = () => {
     navigate('/deleteDriver')
   }
 
+  
+
+
   return (
     <div>
         <h1>Welcome Home {auth.currentUser.displayName}</h1>
@@ -50,7 +54,7 @@ const Home = () => {
         <button onClick={deleteDriver}>Delete Driver</button>
         <section>
           {drivers.map((driver) => {
-            return <div className='driver'>{driver.first_name} {driver.last_name}</div>
+            return <DriverInfo driver={driver} />
           })}
         </section>
     </div>
